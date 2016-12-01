@@ -1,33 +1,40 @@
 package net.runnerdave.gary_games.iteration_1;
 
+import java.util.Map;
+
 /**
  * Created by davidajimenez on 30/11/2016.
  */
 public class Unit {
     private String name;
+    private UnitType type;
+    private Map<String, String> properties;
 
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    private Player player;
-
-    @Override
-    public String toString() {
-        return "Unit{" +
-                "name='" + name + '\'' +
-                '}';
+    public Unit(String name, UnitType type, Map properties) {
+        this.name = name;
+        this.type = type;
+        this.properties = properties;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public UnitType getType() {
+        return type;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Unit{" +
+                "name='" + name + '\'' +
+                ", type=" + type +
+                ", properties=" + properties +
+                '}';
+    }
+
+    public Map<String, String> getProperties() {
+        return properties;
     }
 }
