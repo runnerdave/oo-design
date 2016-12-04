@@ -26,9 +26,11 @@ public class GameTester {
     }
 
     private static void setupPlayer(Player player) {
-        Unit tanks = new Unit("tanks", UnitType.TANKS, 4);
+        Map<String, String> props = new HashMap<>();
+        props.put("quantity", "4");
+        Unit tanks = new Unit("tanks", UnitType.TANKS, props);
         player.addUnit(tanks);
-        Unit army = new Unit("army", UnitType.TROOPS, 10);
+        Unit army = new Unit("army", UnitType.TROOPS, props);
         player.addUnit(army);
     }
 }
