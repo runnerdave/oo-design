@@ -61,7 +61,12 @@ public class Unit {
 
     }
 
-    public Object getProperty(String key) {
-        return properties.get(key);
+    public Object getProperty(String key) throws Exception {
+        if(key == null)
+            throw new Exception("key for property cannot be null");
+        Object property = properties.get(key);
+        if (property == null)
+            throw new Exception("property does not exist");
+        return property;
     }
 }
