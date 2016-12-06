@@ -44,15 +44,6 @@ public class Unit {
     }
 
 
-    @Override
-    public String toString() {
-        return "Unit{" +
-                "name='" + name + '\'' +
-                ", type=" + type +
-                ", properties=" + properties +
-                '}';
-    }
-
     public void setProperty(String key, Object value) {
         Object property = properties.get(key);
         if (property != null) {
@@ -61,9 +52,28 @@ public class Unit {
 
     }
 
+    @Override
+    public String toString() {
+        return "Unit{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", type=" + type +
+                ", properties=" + properties +
+                ", weapons=" + weapons +
+                '}';
+    }
+
+    public Unit(String name, int id, UnitType type, Map<String, Object> properties) {
+        this.name = name;
+        this.id = id;
+        this.type = type;
+        this.properties = properties;
+    }
+
     public Object getProperty(String key) throws Exception {
         if(key == null)
             throw new Exception("key for property cannot be null");
+
         Object property = properties.get(key);
         if (property == null)
             throw new Exception("property does not exist");

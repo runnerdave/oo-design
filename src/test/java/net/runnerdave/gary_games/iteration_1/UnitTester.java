@@ -47,6 +47,7 @@ public class UnitTester {
         unit1.setProperty(key, value);
         Assert.assertEquals(unit1.getProperty("hitpoints"), 43);
 
+        thrown.expect(Exception.class);
         Assert.assertEquals(unit1.getProperty("ddd"), null);
         System.out.println(unit1);
     }
