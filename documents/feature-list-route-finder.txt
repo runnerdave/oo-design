@@ -1,0 +1,11 @@
+== Feature list for Route Finder ==
+
+1. Store complete network of lines for Objectville.
+2. Store stations along the lines.
+3. It should be able to take a starting station and a destination 
+   station and figure out a route to travel.
+4. Should be able to print a report of the route chosen, including 
+   which lines to take, which stations are passed on a line and 
+   details of when a passenger needs to get off one line and get on
+   another line.
+5. Might also consider store sightseeing places per station.
