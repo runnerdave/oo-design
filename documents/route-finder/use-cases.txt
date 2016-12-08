@@ -1,0 +1,25 @@
+== Load network of subway lines ==
+1. Read input file with subway stations and lines
+2. Read the station name from the file
+3. Validate the station does not exist already
+4. Add station to subway system
+5. repeat 2-4 until all stations are added
+6. Read name of the line to add
+7. The system reads in two stations that are connected
+8. Validate stations exist
+9. Create a connection between these two stations
+10. Repeat 6-9 until line is complete
+11. Repeat 6-10 until end of file
+
+== nouns (classes candidates):
+Station
+Line
+Connection
+
+== verbs (candidate operations):
+read file
+read station name
+validate station name
+add station
+read line
+create connection
