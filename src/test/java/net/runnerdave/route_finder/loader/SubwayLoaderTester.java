@@ -32,5 +32,8 @@ public class SubwayLoaderTester {
         sbl.readFile(inputFile);
         List<Connection> connections = sbl.getSubway().getConnections();
         Assert.assertEquals(connections.contains(new Connection(new Station("Ajax Rapids"), new Station("UML Walk"), "Booch Line")), true);
+        Assert.assertEquals(connections.contains(new Connection(new Station("Head First Lounge"), new Station("OOA&D Oval"), "Gamma Line")), true);
+        Assert.assertEquals(connections.contains(new Connection(new Station("Servlet Springs"), new Station("Mighty Gumball, Inc."), "Jacobson Line")), true);
+        Assert.assertEquals(connections.contains(new Connection(new Station("Ajax Rapids"), new Station("Bullshit Walk"), "Booch Line")), false);
     }
 }

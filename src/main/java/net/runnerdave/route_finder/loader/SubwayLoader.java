@@ -37,7 +37,6 @@ public class SubwayLoader {
         }
         try (BufferedReader reader = new BufferedReader(new FileReader(source))) {
             loadStations(subway, reader);
-            reader.readLine();
             String lineName = reader.readLine();
             while(lineName != null && lineName.length() > 0) {
                 loadConnections(subway, reader, lineName);
