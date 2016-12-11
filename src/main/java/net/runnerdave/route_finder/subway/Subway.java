@@ -29,9 +29,15 @@ public class Subway {
         if(hasStation(station1) && hasStation(station2)) {
             Connection connection = new Connection(new Station(station1), new Station(station2), lineName);
             connections.add(connection);
-        } else {
-            throw new RuntimeException("Invalid connection!");
         }
+    }
+
+    public List<Station> getStations(){
+        return this.stations;
+    }
+
+    public List<Connection> getConnections() {
+        return this.connections;
     }
 
 
