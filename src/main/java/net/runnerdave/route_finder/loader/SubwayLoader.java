@@ -27,7 +27,11 @@ public class SubwayLoader {
         sb.subway.getStations().forEach(System.out::println);
     }
 
-    private void readFile(File source) throws IOException {
+    public Subway getSubway() {
+        return subway;
+    }
+
+    public void readFile(File source) throws IOException {
         if (!source.exists()) {
             throw new RuntimeException("file does not exist");
         }
