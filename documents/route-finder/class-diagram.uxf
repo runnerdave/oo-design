@@ -4,23 +4,25 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>550</x>
-      <y>60</y>
+      <x>570</x>
+      <y>160</y>
       <w>150</w>
-      <h>80</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>Connection
 --
-name: String
+lineName: String
 station1: Station
-station2: Station</panel_attributes>
+station2: Station
+--
+equals():boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>230</x>
-      <y>80</y>
+      <x>250</x>
+      <y>180</y>
       <w>160</w>
       <h>70</h>
     </coordinates>
@@ -28,14 +30,14 @@ station2: Station</panel_attributes>
 --
 name: String
 --
-equals(this): boolean</panel_attributes>
+equals(): boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>100</y>
+      <x>400</x>
+      <y>200</y>
       <w>190</w>
       <h>60</h>
     </coordinates>
@@ -46,10 +48,10 @@ station 1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>210</y>
+      <x>220</x>
+      <y>310</y>
       <w>410</w>
-      <h>100</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Subway
 --
@@ -58,14 +60,15 @@ name: String
 addStation(station: Station)
 validateStation(station:Station)
 addConnection(connectionName:String, station1, station2)
+findRoute(start:Station,end:Station):Connection[*]
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
-      <y>140</y>
+      <x>310</x>
+      <y>240</y>
       <w>30</w>
       <h>90</h>
     </coordinates>
@@ -76,8 +79,8 @@ addConnection(connectionName:String, station1, station2)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>110</y>
+      <x>460</x>
+      <y>210</y>
       <w>130</w>
       <h>120</h>
     </coordinates>
@@ -88,8 +91,8 @@ addConnection(connectionName:String, station1, station2)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>70</y>
+      <x>400</x>
+      <y>170</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -100,31 +103,58 @@ station 2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
-      <y>380</y>
-      <w>130</w>
+      <x>220</x>
+      <y>470</y>
+      <w>230</w>
       <h>100</h>
     </coordinates>
-    <panel_attributes>SubwayLoader
+    <panel_attributes>SubwayPrinter
 --
-
+out:PrintStream
 --
-readFile
-processStation
-processLine
+printRoute(route:Connection[*])
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>190</x>
-      <y>300</y>
-      <w>90</w>
-      <h>100</h>
+      <x>390</x>
+      <y>410</y>
+      <w>30</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 </panel_attributes>
-    <additional_attributes>10.0;80.0;70.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>470</y>
+      <w>160</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>SubwayLoader
+--
+in:BufferedReader
+--
+readFile(inputFile:File)
+loadStation
+loadConnection
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>410</y>
+      <w>120</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;60.0</additional_attributes>
   </element>
 </diagram>

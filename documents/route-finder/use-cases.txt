@@ -23,3 +23,20 @@ validate station name
 add station
 read line
 create connection
+
+== Get directions ==
+1. Enter start station
+2. Enter end station
+3. Validate start and end stations
+4. Find possible routes
+5. Present best route
+
+== nouns (candidate classes) ==
+start station
+end station
+route
+
+== verbs (candidate operations) ==
+validate
+find
+print or present

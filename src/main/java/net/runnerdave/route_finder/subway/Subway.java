@@ -1,7 +1,6 @@
 package net.runnerdave.route_finder.subway;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by davidajimenez on 9/12/2016.
@@ -9,10 +8,12 @@ import java.util.List;
 public class Subway {
     private List<Connection> connections;
     private List<Station> stations;
+    private Map<Station, List<Station>> network;
 
     public Subway() {
         this.stations = new ArrayList<>();
         this.connections = new ArrayList<>();
+        this.network = new HashMap<>();
     }
 
     public void addStation(Station s) {
@@ -25,10 +26,31 @@ public class Subway {
         return stations.contains(new Station(stationName));
     }
 
-    public void addConnection(String lineName, String station1, String station2) {
-        if(hasStation(station1) && hasStation(station2)) {
-            Connection connection = new Connection(new Station(station1), new Station(station2), lineName);
+    public void addConnection(String lineName, String stationName1, String stationName2) {
+        if(hasStation(stationName1) && hasStation(stationName2)) {
+            Station station1 = new Station(stationName1);
+            Station station2 = new Station(stationName2);
+            Connection connection = new Connection(station1, station2, lineName);
             connections.add(connection);
+            addToNetwork(station1, station2);
+            addToNetwork(station2, station1);
+        }
+    }
+
+    public Optional<Connection> getConnection(Station station1, Station station2) {
+        return connections.stream().filter(s-> (s.getStation1().equals(station1) &&
+                                                s.getStation2().equals(station2))).findFirst();
+    }
+
+    private void addToNetwork(Station station1, Station station2) {
+        if(network.containsKey(station1)) {
+            List<Station> list = network.get(station1);
+            if(!list.contains(station2)){
+                list.add(station2);
+            }
+        } else {
+            List<Station> list = new ArrayList<>();
+            network.put(station1, list);
         }
     }
 
@@ -40,5 +62,73 @@ public class Subway {
         return this.connections;
     }
 
+    public List<Connection> getDirections(String startStationName, String endStationName) {
+        if (!this.hasStation(startStationName) || !this.hasStation(endStationName))
+        {
+            throw new RuntimeException("Stations entered do not exist on this subway");
+        }
+
+        Station start = new Station(startStationName);
+        Station end = new Station(endStationName);
+        List<Connection> route = new LinkedList();
+        List<Station> reachableStations = new LinkedList();
+        Map<Station, Station> previousStations = new HashMap();
+        List<Station> neighbors = network.get(start);
+
+        for (Iterator i = neighbors.iterator(); i.hasNext(); ) {
+            Station station = (Station) i.next();
+            if (station.equals(end)) {
+                route.add(getConnection(start, end).get());
+                return route;
+            } else {
+                reachableStations.add(station);
+                previousStations.put(station, start);
+            }
+        }
+
+        List<Station> nextStations = new LinkedList();
+        nextStations.addAll(neighbors);
+        Station currentStation = start;
+
+        searchLoop:
+        for (int i = 1; i < stations.size(); i++) {
+            List tmpNextStations = new LinkedList();
+            for (Iterator j = nextStations.iterator(); j.hasNext(); ) {
+                Station station = (Station) j.next();
+                reachableStations.add(station);
+                currentStation = station;
+                List currentNeighbors = (List) network.get(currentStation);
+                for (Iterator k = currentNeighbors.iterator(); k.hasNext(); ) {
+                    Station neighbor = (Station) k.next();
+                    if (neighbor.equals(end)) {
+                        reachableStations.add(neighbor);
+                        previousStations.put(neighbor, currentStation);
+                        break searchLoop;
+                    } else if (!reachableStations.contains(neighbor)) {
+                        reachableStations.add(neighbor);
+                        tmpNextStations.add(neighbor);
+                        previousStations.put(neighbor, currentStation);
+                    }
+                }
+            }
+            nextStations = tmpNextStations;
+        }
+
+        //We've found the path now!
+        boolean keepLooping = true;
+        Station keyStation = end;
+        Station station;
+
+        while (keepLooping) {
+            station = previousStations.get(keyStation);
+            route.add(0, getConnection(station, keyStation).get());
+            if (start.equals(station)) {
+                keepLooping = false;
+            }
+            keyStation = station;
+        }
+
+        return route;
+    }
 
 }
