@@ -3,7 +3,7 @@ package net.runnerdave.route_finder.subway;
 /**
  * Created by davidajimenez on 9/12/2016.
  */
-public class Station {
+public class Station implements Comparable{
     private String name;
 
     public String getName() {
@@ -30,5 +30,17 @@ public class Station {
     @Override
     public int hashCode() {
         return name.toLowerCase().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Station{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.compareTo((Station)o);
     }
 }

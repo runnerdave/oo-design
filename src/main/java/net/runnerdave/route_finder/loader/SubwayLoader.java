@@ -1,5 +1,6 @@
 package net.runnerdave.route_finder.loader;
 
+import net.runnerdave.route_finder.subway.Connection;
 import net.runnerdave.route_finder.subway.Station;
 import net.runnerdave.route_finder.subway.Subway;
 
@@ -7,6 +8,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by davidajimenez on 10/12/2016.
@@ -25,6 +29,9 @@ public class SubwayLoader {
         sb.readFile(inputFile);
         sb.subway.getConnections().forEach(System.out::println);
         sb.subway.getStations().forEach(System.out::println);
+        sb.subway.getNetwork().forEach((k,v)->{
+            System.out.println(k.toString() + "|connecions:" + v.toString());
+        });
     }
 
     public Subway getSubway() {

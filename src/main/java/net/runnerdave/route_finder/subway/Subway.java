@@ -8,6 +8,11 @@ import java.util.*;
 public class Subway {
     private List<Connection> connections;
     private List<Station> stations;
+
+    public Map<Station, List<Station>> getNetwork() {
+        return network;
+    }
+
     private Map<Station, List<Station>> network;
 
     public Subway() {

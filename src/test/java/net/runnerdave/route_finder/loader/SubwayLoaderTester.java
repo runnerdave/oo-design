@@ -53,4 +53,29 @@ public class SubwayLoaderTester {
         Assert.assertEquals(new Connection(new Station("JavaRanch"), new Station("JSP Junction"), "Jacobson Line"), connection3.get());
 
     }
+
+    @Test
+    public void testGetDirections() throws IOException {
+        SubwayLoader sbl = new SubwayLoader();
+        File inputFile = new File("documents/route-finder/input-file.txt");
+        sbl.readFile(inputFile);
+        Optional<Connection> connection = sbl.getSubway().getConnection(new Station("Ajax Rapids"), new Station("UML Walk"));
+        Assert.assertEquals(new Connection(new Station("Ajax Rapids"), new Station("UML Walk"), "Booch Line"), connection.get());
+
+//        List<Connection> route = sbl.getSubway().getDirections("HTML Heights", "XHTML Expressway");
+//        Assert.assertEquals(2, route.size());
+//
+//        route = sbl.getSubway().getDirections("JavaRanch", "JSP Junction");
+//        Assert.assertEquals(1, route.size());
+//
+//
+//        route = sbl.getSubway().getDirections("JavaRanch", "Servlet Springs");
+//        Assert.assertEquals(3, route.size());
+//
+//        route = sbl.getSubway().getDirections("EJB Estates", "Break Neck Pizza");
+//        Assert.assertEquals(1, route.size());
+
+        List<Connection> route = sbl.getSubway().getDirections("The Tikibean Lounge", "Algebra Avenue");
+        Assert.assertEquals(6, route.size());
+    }
 }

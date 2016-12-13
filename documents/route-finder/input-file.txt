@@ -53,3 +53,23 @@ JavaRanch
 JSP Junction
 GoF Gardens
 Servlet Springs
+
+Wirfs-Brock Line
+The Tikibean Lounge
+UML Walk
+HTML Heights
+Weather-O-Rama, Inc.
+XHTML Expressway
+LSP Lane
+Algebra Avenue
+DRY Drive
+PMP Place
+Web Design Way
+Boards 'R' Us
+EJB Estates
+Break Neck Pizza
+SRP Square
+Servlet Springs
+Objectville Diner
+Head First Lounge
+The Tikibean Lounge

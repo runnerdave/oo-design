@@ -42,6 +42,15 @@ public class Connection {
     }
 
     @Override
+    public String toString() {
+        return "Connection{" +
+                "station1=" + station1 +
+                ", station2=" + station2 +
+                ", lineName='" + lineName + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         int result = getStation1() != null ? getStation1().hashCode() : 0;
         result = 31 * result + (getStation2() != null ? getStation2().hashCode() : 0);
