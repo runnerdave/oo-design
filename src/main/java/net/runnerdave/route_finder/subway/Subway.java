@@ -42,10 +42,23 @@ public class Subway {
         }
     }
 
-    public Optional<Connection> getConnection(Station station1, Station station2) {
+    public Optional<Connection> getOptionalConnection(Station station1, Station station2) {
         return connections.stream().filter(s-> (s.getStation1().equals(station1) &&
                                                 s.getStation2().equals(station2))).findFirst();
     }
+
+    private Connection getConnection(Station station1, Station station2) {
+        for (Iterator i = connections.iterator(); i.hasNext(); ) {
+            Connection connection = (Connection) i.next();
+            Station one = connection.getStation1();
+            Station two = connection.getStation2();
+            if ((station1.equals(one)) && station2.equals(two)) {
+                return connection;
+            }
+        }
+        return null;
+    }
+
 
     private void addToNetwork(Station station1, Station station2) {
         if(network.containsKey(station1)) {
@@ -55,6 +68,7 @@ public class Subway {
             }
         } else {
             List<Station> list = new ArrayList<>();
+            list.add(station2);
             network.put(station1, list);
         }
     }
@@ -83,7 +97,7 @@ public class Subway {
         for (Iterator i = neighbors.iterator(); i.hasNext(); ) {
             Station station = (Station) i.next();
             if (station.equals(end)) {
-                route.add(getConnection(start, end).get());
+                route.add(getConnection(start, end));
                 return route;
             } else {
                 reachableStations.add(station);
@@ -91,7 +105,7 @@ public class Subway {
             }
         }
 
-        List<Station> nextStations = new LinkedList();
+        List<Station> nextStations = new LinkedList<>();
         nextStations.addAll(neighbors);
         Station currentStation = start;
 
@@ -102,7 +116,7 @@ public class Subway {
                 Station station = (Station) j.next();
                 reachableStations.add(station);
                 currentStation = station;
-                List currentNeighbors = (List) network.get(currentStation);
+                List<Station> currentNeighbors = network.get(currentStation);
                 for (Iterator k = currentNeighbors.iterator(); k.hasNext(); ) {
                     Station neighbor = (Station) k.next();
                     if (neighbor.equals(end)) {
@@ -126,7 +140,7 @@ public class Subway {
 
         while (keepLooping) {
             station = previousStations.get(keyStation);
-            route.add(0, getConnection(station, keyStation).get());
+            route.add(0, getConnection(station, keyStation));
             if (start.equals(station)) {
                 keepLooping = false;
             }

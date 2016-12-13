@@ -22,17 +22,7 @@ public class SubwayLoader {
         this.subway = new Subway();
     }
 
-    public static void main(String[] args) throws IOException {
-        System.out.println("== Welcome to the Route Finder ==");
-        SubwayLoader sb = new SubwayLoader();
-        File inputFile = new File("documents/route-finder/input-file.txt");
-        sb.readFile(inputFile);
-        sb.subway.getConnections().forEach(System.out::println);
-        sb.subway.getStations().forEach(System.out::println);
-        sb.subway.getNetwork().forEach((k,v)->{
-            System.out.println(k.toString() + "|connecions:" + v.toString());
-        });
-    }
+
 
     public Subway getSubway() {
         return subway;
