@@ -37,6 +37,7 @@ public class Subway {
             Station station2 = new Station(stationName2);
             Connection connection = new Connection(station1, station2, lineName);
             connections.add(connection);
+            connections.add(new Connection(station2, station1, lineName));
             addToNetwork(station1, station2);
             addToNetwork(station2, station1);
         }

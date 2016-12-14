@@ -41,8 +41,8 @@ public class RouteFinder {
 
         System.out.println("== get directions from \"JavaRanch\", \"Head First Lounge\"");
         route = sbl.getSubway().getDirections("JavaRanch", "Head First Lounge");
-        route.stream().forEach(System.out::println);
-//        sbp.printRoute(route);
+//        route.stream().forEach(System.out::println);
+        sbp.printRoute(route);
 
     }
 }
