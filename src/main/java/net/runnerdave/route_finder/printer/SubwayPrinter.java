@@ -22,18 +22,17 @@ public class SubwayPrinter {
                 firstConnection.getLineName(),
                 firstConnection.getStation2().getName());
         if (connectionList.size() > 2) {
-            for (int i = 1; i < (connectionList.size() - 2); i++) {
+            for (int i = 1; i < connectionList.size(); i++) {
                 Connection currentConnection = connectionList.get(i);
                 Connection previousConnection = connectionList.get(i - 1);
-                Connection nextConnection = connectionList.get(i + 1);
                 if (!currentConnection.getLineName().equalsIgnoreCase(previousConnection.getLineName())) {
                     out.format("\nWhen you get to %s, get off the %s.\n Switch over to the %s, heading towards %s",
-                            currentConnection.getStation2().getName(),
+                            currentConnection.getStation1().getName(),
                             previousConnection.getLineName(),
                             currentConnection.getLineName(),
-                            nextConnection.getStation2().getName());
+                            currentConnection.getStation2().getName());
                 } else {
-                    out.format("\nContinue past %s", currentConnection.getStation2().getName());
+                    out.format("\n    Continue past %s", currentConnection.getStation1().getName());
                 }
             }
         }

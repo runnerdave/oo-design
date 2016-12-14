@@ -19,12 +19,6 @@ public class RouteFinder {
 
         System.out.println("== Welcome to the Route Finder ==");
 
-
-//        sbl.getSubway().getConnections().forEach(System.out::println);
-//        sbl.getSubway().getStations().forEach(System.out::println);
-//        sbl.getSubway().getNetwork().forEach((k,v)->{
-//            System.out.println(k.toString() + "|connecions:" + v.toString());
-//        });
         System.out.println("== get directions from \"GoF Gardens\" to \"Objectville Diner\"");
         List<Connection> route = sbl.getSubway().getDirections("GoF Gardens", "Objectville Diner");
         //route.stream().forEach(System.out::println);
@@ -34,7 +28,7 @@ public class RouteFinder {
 
         System.out.println("== get directions from \"EJB Estates\", \"UML Walk\"");
         route = sbl.getSubway().getDirections("EJB Estates", "UML Walk");
-        //route.stream().forEach(System.out::println);
+//        route.stream().forEach(System.out::println);
         sbp.printRoute(route);
 
         System.out.println("\n");
